@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
-<body>
+<html lang="en">
+<head>
 
-<h2>WolfTrack - CSU Pueblo Interactive Map</h2>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WolfTrack - CSU Pueblo Interactive Map</title>
+    <style>
+
 .popup {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -72,19 +75,22 @@ padding: 5px 15px;
   color: #003459;
 }
 </style>
-
+</head>
+<body>
+    <h2>WolfTrack - CSU Pueblo Interactive Map</h2>
 
 <div id="detailsPopup" class="popup">
   <div class="popup-content">
     <span class="close">&times;</span>
-    <center>
+    <div style="text-align: center;">
     <div class="one" id="detailsTitle">
   	<h1>Style One</h1>
     </div>
-    <p><img class="popup-content-image" id="mapDetailsImage" src=""></p>
-    <p><a><button id="directions" class="popup-button">Get Directions</button></a></p>
-    </center>
+    <p><img class="popup-content-image" id="mapDetailsImage" alt="Map Details" src="campus-map-2024.png"></p>
+    <p><button id="directions" class="popup-button">Get Directions</button></p>
+    
   </div>
+</div>
 </div>
 
 <img src="https://www.csupueblo.edu/about/_img/campus-map-2024.png" alt="CSU Pueblo Map" usemap="#campusmap">
@@ -109,11 +115,11 @@ padding: 5px 15px;
 
   <area shape="rect" coords="1115,252,1212,338" alt="Baseball Field" href="javascript:onImageClick('Baseball Field');">
 
-  <area shape ="rect" coords="1195,533,1150,455" alt="Ropes Course" href="javascript:onImageClick('Ropes Course');">
+  <area shape ="rect" coords="1150,455,1195,533" alt="Ropes Course" href="javascript:onImageClick('Ropes Course');">
   
-  <area shape ="rect" coords="1197,453,1149,389" alt="Tennis Courts" href="javascript:onImageClick('Tennis Courts');">
+  <area shape ="rect" coords="1149,389,1197,453" alt="Tennis Courts" href="javascript:onImageClick('Tennis Courts');">
   
-  <area shape ="rect" coords="1218,772,1120,641" alt="Art and Lorraine Gonzales Stadium" href="javascript:onImageClick('Art and Lorraine Gonzales Stadium');">
+  <area shape ="rect" coords="1120,641,1218,772" alt="Art and Lorraine Gonzales Stadium" href="javascript:onImageClick('Art and Lorraine Gonzales Stadium');">
   
   <area shape ="circle" coords="1018,470,49" alt="Massari Arena" href="javascript:onImageClick('Massari Arena');">
   
@@ -215,11 +221,11 @@ padding: 5px 15px;
 
 <area shape="rect" coords="932,323,953,353" alt="Fowler Building" href="javascript:onImageClick('Fowler Building');">
 
-<area shape="rect" coords="1379,518,1413,481" alt="Fieldhouse" href="javascript:onImageClick('Fieldhouse');">
+<area shape="rect" coords="1379,481,1413,518" alt="Fieldhouse" href="javascript:onImageClick('Fieldhouse');">
 
 <area shape="poly" coords="1372,508,1372,489,1342,463,1331,478,1356,505" alt="Leomiti Warrior Center" href="javascript:onImageClick('Leomiti Warrior Center');">
 
-<area shape="circle" coords="829,580,17" alt="University Plaza" href="javascript:onImageClick('University Plaza');"
+<area shape="circle" coords="829,580,17" alt="University Plaza" href="javascript:onImageClick('University Plaza');">
   
 </map>
 
