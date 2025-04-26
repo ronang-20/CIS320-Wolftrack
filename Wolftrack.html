@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>WolfTrack - CSU Pueblo Interactive Map</h2>
+<style>
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.popup-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 5px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.popup-content-image {
+  margin: auto; /* 10% from the top and centered */
+  width: 80%;
+}
+
+.popup-button {
+  background-color: #003459; /* Blue */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.popup-button:hover {background-color: #1C5FA1}
+
+.popup-button:active {
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+padding: 5px 15px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.one h1 {
+  text-align: center;
+  text-transform: capitalize;
+  color: #003459;
+}
+</style>
+
+
+<div id="detailsPopup" class="popup">
+  <div class="popup-content">
+    <span class="close">&times;</span>
+    <center>
+    <div class="one" id="detailsTitle">
+  	<h1>Style One</h1>
+    </div>
+    <p><img class="popup-content-image" id="mapDetailsImage" src=""></p>
+    <p><a><button id="directions" class="popup-button">Get Directions</button></a></p>
+    </center>
+  </div>
+</div>
+
+<img src="https://www.csupueblo.edu/about/_img/campus-map-2024.png" alt="CSU Pueblo Map" usemap="#campusmap">
+
+<map name="campusmap">
+<!-- Step 1: Add an area shape for the building / parking lot for the CSU Pueblo map -->
+<!-- Make sure to have the href = "javascript:onImageClick('put the name of your building / parking lot in here');" -->
+<!-- Use a unique name for the building -->
+<!-- When the image area is clicked, it will call the JavaScript method -->
+
+<!-- Rawlins Softball Field -->
+  <area shape="circle" coords="1225,129,100" id="softballField" alt="Rawlings Softball Field" href="javascript:onImageClick('Rawlings Softball Field');">
+
+<!-- Physics / Math Building -->
+  <area shape="circle" coords="678,756,30" alt="Physics and Math Building" href="javascript:onImageClick('Physics and Math Building');">
+
+  <area shape="rect" coords="1370,336,1419,434" alt="Thunderbowl Stadium" href="javascript:onImageClick('Thunderbowl Stadium');">
+
+  <area shape="rect" coords="807,147,836,211" alt="Student Recreation Field" href="javascript:onImageClick('Student Recreation Field');">
+
+  <area shape="rect" coords="750,151,786,235" alt="Crestone Hall" href="javascript:onImageClick('Crestone Hall');">
+
+  <area shape="rect" coords="1115,252,1212,338" alt="Baseball Field" href="javascript:onImageClick('Baseball Field');">
+
+  <area shape ="rect" coords="1195,533,1150,455" alt="Ropes Course" href="javascript:onImageClick('Ropes Course');">
+  
+  <area shape ="rect" coords="1197,453,1149,389" alt="Tennis Courts" href="javascript:onImageClick('Tennis Courts');">
+  
+  <area shape ="rect" coords="1218,772,1120,641" alt="Art and Lorraine Gonzales Stadium" href="javascript:onImageClick('Art and Lorraine Gonzales Stadium');">
+  
+  <area shape ="circle" coords="1018,470,49" alt="Massari Arena" href="javascript:onImageClick('Massari Arena');">
+  
+  <area shape ="circle" coords="1015,546,33" alt="Student Rec Center" href="javascript:onImageClick('Student Rec Center');">
+  
+  <area shape ="poly" coords="880,556,935,569,942,544,890,526" alt="Administration Building" href="javascript:onImageClick('Administration Building');">
+  
+  <area shape ="poly" coords="1208,568,1323,569,1323,329,1281,319,1252,315,1240,369,1214,376" alt="E10 Parking Lot" href="javascript:onImageClick('E10 Parking Lot');">
+  
+  <area shape ="circle" coords="1000,617,45" alt="E1 Parking Lot" href="javascript:onImageClick('E1 Parking Lot');">
+  
+  <area shape ="poly" coords="976,736,1003,744,1018,680,990,673" alt="E2 Parking Lot" href="javascript:onImageClick('E2 Parking Lot');">
+  
+  <area shape ="poly" coords="942,725,968,733,982,675,958,666" alt="E3 Parking Lot" href="javascript:onImageClick('E3 Parking Lot');">
+  
+  <area shape ="poly" coords="900,632,947,642,944,611,905,600" alt="E4 Parking Lot" href="javascript:onImageClick('E4 Parking Lot');">
+  
+  <area shape ="poly" coords="892,676,934,687,945,646,900,635" alt="E5 Parking Lot" href="javascript:onImageClick('E5 Parking Lot');">
+  
+  <area shape ="poly" coords="884,699,931,716,937,686,889,674" alt="E6 Parking Lot" href="javascript:onImageClick('E6 Parking Lot');">
+  
+  <area shape ="poly" coords="840,721,853,726,866,683,853,683" alt="E7 Parking Lot" href="javascript:onImageClick('E7 Parking Lot');">
+  
+  <area shape ="poly" coords="839,818,905,829,919,742,879,726,870,749,849,745" alt="E8 Parking Lot North & South" href="javascript:onImageClick('E8 Parking Lot North & South');">
+  
+  <area shape ="circle" coords="949,755,18" alt="E9 Parking Lot" href="javascript:onImageClick('E9 Parking Lot');">
+  
+  <area shape ="poly" coords="1226,228,1244,262,1308,244,1290,210,1266,223" alt="E11 Parking Lot" href="javascript:onImageClick('E11 Parking Lot');">
+  
+  <area shape ="poly" coords="815,807,826,765,799,757,791,789" alt="S1 Parking Lot" href="javascript:onImageClick('S1 Parking Lot');">
+  
+  <area shape ="poly" coords="807,841,808,812,778,788,762,823" alt="S2 Parking Lot" href="javascript:onImageClick('S2 Parking Lot');">
+  
+  <area shape ="poly" coords="757,889,773,897,803,881,826,860,810,844,782,834,758,828,747,810,736,802,715,814,713,833,731,846,750,849,758,854,762,864" alt="S3 Parking Lot" href="javascript:onImageClick('S3 Parking Lot');">
+  
+  <area shape ="poly" coords="741,952,753,921,678,881,663,908" alt="S4 Parking Lot" href="javascript:onImageClick('S4 Parking Lot');">
+  
+  <area shape ="poly" coords="547,858,629,897,674,803,591,761" alt="W1 Parking Lot" href="javascript:onImageClick('W1 Parking Lot');">
+  
+  <area shape ="poly" coords="513,630,589,659,581,740,539,724,525,728,502,701,494,667,491,635" alt="W2 Parking Lot" href="javascript:onImageClick('W2 Parking Lot');">
+  
+  <area shape ="poly" coords="476,494,573,515,605,637,591,644,505,621" alt="W3 Parking Lot" href="javascript:onImageClick('W3 Parking Lot');">
+  
+  <area shape ="circle" coords="641,412,14" alt="W4 Parking Lot" href="javascript:onImageClick('W4 Parking Lot');">
+  
+  <area shape ="poly" coords="612,419,634,379,607,366,579,395" alt="W5 Parking Lot" href="javascript:onImageClick('W5 Parking Lot');">
+  
+  <area shape ="poly" coords="681,319,718,298,726,266,700,258,687,276" alt="W6 Parking Lot North & South" href="javascript:onImageClick('W6 Parking Lot North & South');">
+  
+  <area shape="poly" coords="826,345,850,332,837,302,808,295" alt="N1 Parking Lot" href="javascript:onImageClick('N1 Parking Lot');">
+  
+  <area shape="poly" coords="831,394,876,405,887,400,919,411,923,387,845,347" alt="N2 Parking Lot" href="javascript:onImageClick('N2 Parking Lot');">
+  
+  <area shape="poly" coords="879,441,907,449,915,420,884,410" alt="N3 Parking Lot" href="javascript:onImageClick('N3 Parking Lot');">
+  
+  <area shape="poly" coords="931,433,981,444,995,405,942,391" alt="N4 Parking Lot" href="javascript:onImageClick('N4 Parking Lot');">
+  
+  <area shape="poly" coords="878,317,908,303,905,293,870,303" alt="N5 Parking Lot" href="javascript:onImageClick('N5 Parking Lot');">
+  
+  <area shape="rect" coords="847,132,865,222" alt="N6 Parking Lot" href="javascript:onImageClick('N6 Parking Lot');">
+  
+  <area shape="poly" coords="797,272,803,243,792,238,782,274" alt="N7 Parking Lot" href="javascript:onImageClick('N7 Parking Lot');">
+  
+  <area shape="poly" coords="602,141,775,77,776,116,630,181" alt="N8 Parking Lot" href="javascript:onImageClick('N8 Parking Lot');">
+  
+  <area shape="rect" coords="597,213,681,254" alt="Greenhorn" href="javascript:onImageClick('Greenhorn');">
+
+  <area shape="rect" coords="668,174,730,213" alt="Culebra" href="javascript:onImageClick('Culebra');">
+
+  <area shape="circle" coords="616,328,66" alt="University Village at Walking Sticks Apts." href="javascript:onImageClick('University Village at Walking Sticks Apts.');">
+  
+  <area shape="poly" coords="751,403,709,333,748,273,777,334" alt="Belmont" href="javascript:onImageClick('Belmont');">
+  
+  <area shape="circle" coords="840,461,64" alt="Occhiato Student Center" href="javascript:onImageClick('Occhiato Student Center');">
+  
+  <area shape="rect" coords="668,407,721,520" alt ="Capozzolo Center for the Arts" href="javascript:onImageClick('Capozzolo Center for the Arts');">
+  
+  <area shape="rect" coords="1360,605,1414,634" alt="Thunder Village" href="javascript:onImageClick('Thunder Village');">
+  
+  <area shape="poly" coords="745,517,732,553,760,566,749,611,760,614,780,545,768,525" alt="Library and Academic Resources Center" href="javascript:onImageClick('Library and Academic Resources Center');">
+
+<area shape="poly" coords="712,647,736,657,745,615,723,607" alt="Chemistry Building" href="javascript:onImageClick('Chemistry Building');">
+
+<area shape="poly" coords="705,665,740,679,720,727,687,711" alt="Life Sciences Building" href="javascript:onImageClick('Life Sciences Building');">
+
+<area shape="poly" coords="795,626,844,638,833,669,791,655" alt="Center for Integrated Health and Human Inquiry" href="javascript:onImageClick('Center for Integrated Health and Human Inquiry');">
+
+<area shape="poly" coords="809,675,785,715,805,726,820,704,837,698,829,680" alt="Hasan Business Building" href="javascript:onImageClick('Hasan Business Building');">
+
+<area shape="poly" coords="666,598,702,602,696,626,663,618" alt="General Classroom Building" href="javascript:onImageClick('General Classroom Building');">
+
+<area shape="poly" coords="780,732,793,747,764,791,717,807,707,788,745,774" alt="Technology Building" href="javascript:onImageClick('Technology Building');">
+
+<area shape="poly" coords="809,242,821,239,828,264,814,266" alt="Child Care Center" href="javascript:onImageClick('Child Care Center');">
+
+<area shape="poly" coords="1038,300,1048,323,995,355,994,318" alt="Physical Plant" href="javascript:onImageClick('Physical Plant');">
+
+<area shape="circle" coords="733,873,28" alt="Buell Communications" href="javascript:onImageClick('Buell Communications');">
+
+<area shape="rect" coords="932,323,953,353" alt="Fowler Building" href="javascript:onImageClick('Fowler Building');">
+
+<area shape="rect" coords="1379,518,1413,481" alt="Fieldhouse" href="javascript:onImageClick('Fieldhouse');">
+
+<area shape="poly" coords="1372,508,1372,489,1342,463,1331,478,1356,505" alt="Leomiti Warrior Center" href="javascript:onImageClick('Leomiti Warrior Center');">
+
+<area shape="circle" coords="829,580,17" alt="University Plaza" href="javascript:onImageClick('University Plaza');"
+  
+</map>
+
+<script>
+// Get the pop up modal
+var popup = document.getElementById("detailsPopup");
+
+// Get the button that gets directions to the location
+var directionsBtn = document.getElementById("directions");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+var imageMapIdClicked = "";
+
+var directionsLocation = "";
+
+// When the user clicks the button, open the modal
+onImageClick = function(mapItem) {
+  // Save off the building that was clicked so it can be used when
+  // the button for directions is clicked
+  imageMapIdClicked = mapItem;
+  
+  var detailsImage = document.getElementById("mapDetailsImage");
+  var detailsTitle = document.getElementById("detailsTitle");
+
+  // Step 2: Add a new if else statement below for the building / parking lot you are working on
+  // You will also need to get an image of the building / parking lot from a Google search and save the image in
+  // the images folder
+  if (mapItem == "Rawlings Softball Field"){
+      detailsImage.src = "./images/rawlings_softball_complex.png";
+      detailsTitle.innerHTML = "<h1>Rawlings Softball Field</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/Rawlings+Softball+Complex,+Rawlings+Boulevard,+Pueblo,+CO";
+  }
+  else if (mapItem == "Physics and Math Building")
+  {
+      detailsImage.src = "./images/physics_math.png";
+      detailsTitle.innerHTML = "<h1>Physics and Math Building</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Physics+and+Math+Building";
+  }
+  else if (mapItem == "Thunderbowl Stadium")
+  {
+      detailsImage.src = "./images/thunder_bowl_stadium.jpg";
+      detailsTitle.innerHTML = "<h1>Thunderbowl Stadium</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/Neta+and+Eddie+DeRose+Thunderbowl+Stadium";
+  }
+  else if (mapItem == "Student Recreation Field")
+  {
+      detailsImage.src = "./images/student_rec_field.jpg";
+      detailsTitle.innerHTML = "<h1>Student Recreation Field</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Rec+Field";
+  }
+  else if (mapItem == "E1 Parking Lot")
+  {
+      detailsImage.src = "./images/e1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>E1 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3081193,-104.5760438";
+  }
+  else if (mapItem == "E2 Parking Lot")
+  {
+      detailsImage.src = "./images/e1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>E2 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3070248,-104.5757648";
+  }
+  else if (mapItem == "E3 Parking Lot")
+  {
+      detailsImage.src = "./images/e1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>E3 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3070332,-104.5762476";
+  }
+  else if (mapItem == "E4 Parking Lot")
+  {
+      detailsImage.src = "./images/e1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>E4 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3077909,-104.5767733";
+  }
+  else if (mapItem == "E5 Parking Lot")
+  {
+      detailsImage.src = "./images/e1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>E5 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3073616,-104.5767197";
+  }
+  else if (mapItem == "E6 Parking Lot")
+  {
+      detailsImage.src = "./images/e1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>E6 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3070501,-104.5769128";
+  }
+  else if (mapItem == "E7 Parking Lot")
+  {
+      detailsImage.src = "./images/e7_parking_lot.jpeg";
+      detailsTitle.innerHTML = "<h1>E7 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3068396,-104.5777818";
+  }
+  else if (mapItem == "E8 Parking Lot North and South")
+  {
+      detailsImage.src = "./images/e8_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>E8 Parking Lot North and South</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3062503,-104.5771488";
+  }
+  else if (mapItem == "E9 Parking Lot")
+  {
+      detailsImage.src = "./images/e9_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>E9 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3063934,-104.5764729";
+  }
+  else if (mapItem == "E11 Parking Lot")
+  {
+      detailsImage.src = "./images/e9_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>E11 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3117561,-104.5721599";
+  }
+  else if (mapItem == "S1 Parking Lot")
+  {
+      detailsImage.src = "./images/s2_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>S1 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3061178,-104.5784557";
+  }
+  else if (mapItem == "S2 Parking Lot")
+  {
+      detailsImage.src = "./images/s2_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>S2 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3061178,-104.5784557";
+  }
+  else if (mapItem == "S3 Parking Lot")
+  {
+      detailsImage.src = "./images/s2_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>S3 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3055664,-104.5790912";
+  }
+  else if (mapItem == "S4 Parking Lot")
+  {
+      detailsImage.src = "./images/s2_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>S4 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3048423,-104.5800354";
+  }
+  else if (mapItem == "W1 Parking Lot")
+  {
+      detailsImage.src = "./images/w1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>W1 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3057953,-104.5810051";
+  }
+  else if (mapItem == "W2 Parking Lot")
+  {
+      detailsImage.src = "./images/w1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>W2 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3073157,-104.5817335";
+  }
+  else if (mapItem == "W3 Parking Lot")
+  {
+      detailsImage.src = "./images/w1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>W3 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3084214,-104.5819156";
+  }
+  else if (mapItem == "W4 Parking Lot")
+  {
+      detailsImage.src = "./images/w1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>W4 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.310005,-104.5804319";
+  }
+  else if (mapItem == "W5 Parking Lot")
+  {
+      detailsImage.src = "./images/w1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>W5 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3102412,-104.580914";
+  }
+  else if (mapItem == "W6 Parking Lot North & South")
+  {
+      detailsImage.src = "./images/w1_parking_lot.jpg";
+      detailsTitle.innerHTML = "<h1>W6 Parking Lot North and South</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3112911,-104.579833";
+  }
+  else if (mapItem == "Crestone Hall")
+  {
+      detailsImage.src = "./images/crestone.png";
+      detailsTitle.innerHTML = "<h1>Crestone Hall</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Crestone+Hall";
+  }
+  else if (mapItem == "Baseball Field")
+  {
+      detailsImage.src = "./images/Rawlings_Field.jpg";
+      detailsTitle.innerHTML = "<h1>Baseball Field</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Rawlings+Field";
+  }
+  else if (mapItem == "Ropes Course"){
+      detailsImage.src = "./images/ropes_course.jpg";
+      detailsTitle.innerHTML = "<h1>Ropes Course</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Ropes+Course";
+  }
+  else if (mapItem == "Tennis Courts"){
+      detailsImage.src = "./images/tennis_courts.webp";
+      detailsTitle.innerHTML = "<h1>Tennis Courts</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=38.3098642,-104.5733949";
+  }
+  else if (mapItem == "Art and Lorraine Gonzales Stadium"){
+      detailsImage.src = "./images/art-&-lorraine-gonzales-stadium.webp";
+      detailsTitle.innerHTML = "<h1>Art and Lorraine Gonzales Stadium</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/Art+%26+Lorraine+Gonzales+Stadium";
+  }
+  else if (mapItem == "Massari Arena"){
+      detailsImage.src = "./images/massari_arena.webp";
+      detailsTitle.innerHTML = "<h1>Massari Arena</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/Massari+Arena";
+  }
+  else if (mapItem == "Student Rec Center"){
+      detailsImage.src = "./images/rec_center.jpg";
+      detailsTitle.innerHTML = "<h1>Student Rec Center</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/Colorado+State+University+Pueblo+Student+Recreation+Center";
+  }
+  else if (mapItem == "Administration Building"){
+      detailsImage.src = "./images/admin.jpg";
+      detailsTitle.innerHTML = "<h1>Administration Building</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3085719,-104.5769328";
+  }
+  else if (mapItem == "E10 Parking Lot"){
+      detailsImage.src = "./images/E10-Parking.jpg";
+      detailsTitle.innerHTML = "<h1>E10 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3100799,-104.5726286";
+  }
+  else if (mapItem == "Greenhorn"){
+    detailsImage.src = "./images/greenhorn-hall.jpg";
+    detailsTitle.innerHTML = "<h1>Greenhorn</h1>";
+    directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3105833,-104.6038686";
+  }
+
+  else if (mapItem == "Culebra"){
+    detailsImage.src = "./images/culebra.jpg"
+    detailsTitle.innerHTML = "<h1>Culebra</h1>";
+    directionsLocation = "https://www.google.com/maps/dir/Current+Location/4320+Walking+Stick+Blvd,+Pueblo,+CO+81001";
+  }
+  else if (mapItem == "University Village at Walking Sticks Apts."){
+    detailsImage.src = "./images/University_Village_at_Walking_Sticks_Apts.jpg";
+    detailsTitle.innerHTML = "<h1>University Village at Walking Sticks Apts.</h1>";
+    directionsLocation = "https://www.google.com/maps/dir/Current+Location/Walking+Stick+Apartments";
+  }
+  else if (mapItem == "Belmont"){
+      detailsImage.src = "./images/Belmont.jpg";
+      detailsTitle.innerHTML = "<h1>Belmont</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/Colorado+State+University+Pueblo,+2200+Bonforte+Blvd,+Pueblo,+CO+81001";
+  }
+  else if (mapItem == "Occhiato Student Center"){
+      detailsImage.src = "./images/Occhiato_Student_Center.jpg";
+      detailsTitle.innerHTML = "<h1>Occhiato Student Center</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/Occhiato+Student+Center,+2200+Bonforte+Blvd,+Pueblo,+CO+81001";
+  }
+  else if (mapItem == "Capozzolo Center for the Arts"){
+      detailsImage.src = "./images/Capozzolo_Center_for_the_Arts.jpg";
+      detailsTitle.innerHTML = "<h1>Capozzolo Center for the Arts</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/Capps+Capozzolo+Academic+Center+for+the+Arts,+220+Bonforte+Blvd,+Pueblo,+CO+81001";
+  }
+  else if (mapItem == "Thunder Village"){
+      detailsImage.src = "./images/thunder_village.webp";
+      detailsTitle.innerHTML = "<h1>Thunder Village</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/ThunderZone+Pizza+and+Tap+House";
+  }
+  else if (mapItem == "N1 Parking Lot"){
+      detailsImage.src = "./images/N1-parking.jpg";
+      detailsTitle.innerHTML = "<h1>N1 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3109323,-104.5780004";
+  }
+  else if(mapItem == "N2 Parking Lot"){
+      detailsImage.src = "./images/N1-parking.jpg";
+      detailsTitle.innerHTML = "<h1>N2 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3104167,-104.5775615";
+  }
+  else if(mapItem == "N3 Parking Lot"){
+      detailsImage.src = "./images/N1-parking.jpg";
+      detailsTitle.innerHTML = "<h1>N3 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3098611,-104.5771002";
+  }
+  else if(mapItem == "N4 Parking Lot"){
+      detailsImage.src = "./images/N1-parking.jpg";
+      detailsTitle.innerHTML = "<h1>N4 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3099958,-104.5763116";
+  }
+  else if(mapItem == "N5 Parking Lot"){
+      detailsImage.src = "./images/N1-parking.jpg";
+      detailsTitle.innerHTML = "<h1>N5 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3111617,-104.5771055";
+  }
+  else if (mapItem == "N6 Parking Lot"){
+      detailsImage.src = "./images/N1-parking.jpg";
+      detailsTitle.innerHTML = "<h1>N6 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3122592,-104.577596";
+  }
+  else if (mapItem == "N7 Parking Lot"){
+      detailsImage.src = "./images/N1-parking.jpg";
+      detailsTitle.innerHTML = "<h1>N7 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3114901,-104.5783769";
+  }
+  else if (mapItem == "Library and Academic Resources Center")
+  {
+      detailsImage.src = "./images/Library_.jpg";
+      detailsTitle.innerHTML = "<h1>Library and Academic Resources Center/Visitors Center</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Library+and+Academic+Resource+Center";
+  }
+else if (mapItem == "Chemistry Building")
+  {
+      detailsImage.src = "./images/Chemistry_Building.jpg";
+      detailsTitle.innerHTML = "<h1>Chemistry Building</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Chemistry+Building";
+  }
+else if (mapItem == "Life Sciences Building")
+  {
+      detailsImage.src = "./images/Life_Sciences_Building.jpg";
+      detailsTitle.innerHTML = "<h1>Life Sciences Building</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Life+Sciences+Building";
+  }
+else if (mapItem == "Center for Integrated Health and Human Inquiry")
+  {
+      detailsImage.src = "./images/Center_for.jpg";
+      detailsTitle.innerHTML = "<h1>Center for Integrated Health and Human Inquiry</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Center+for+Integrated+Health+and+Human+Inquiry";
+  }
+else if (mapItem == "Hasan Business Building")
+  {
+      detailsImage.src = "./images/Hasan_.jpg";
+      detailsTitle.innerHTML = "<h1>Hasan Business Building</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Hasan+Business+Building";
+  }
+else if (mapItem == "General Classroom Building")
+  {
+      detailsImage.src = "./images/General_.jpg";
+      detailsTitle.innerHTML = "<h1>General Classroom Building</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+General+Classroom+Building";
+  }
+else if (mapItem == "Technology Building")
+  {
+      detailsImage.src = "./images/Technology_.jpg";
+      detailsTitle.innerHTML = "<h1>Technology Building</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Technology+Building";
+  }
+else if (mapItem == "Child Care Center")
+  {
+      detailsImage.src = "./images/Child_Care.jpg";
+      detailsTitle.innerHTML = "<h1>Child Care Center</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Child+Care+Center";
+  }
+else if (mapItem == "Physical Plant")
+  {
+      detailsImage.src = "./images/Physical_Plant.jpg";
+      detailsTitle.innerHTML = "<h1>Physical Plant</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/CSU-Pueblo+Physical+Plant";
+  }
+ else if (mapItem == "Buell Communications"){
+     detailsImage.src = "./images/Buell_Communications.jpg";
+     detailsTitle.innerHTML = "<h1>Buell Communications</h1>";
+     directionsLocation = "https://www.google.com/maps/dir/Current+Location/Buell+Communications+Center+2200+Bonforte+Blvd+Pueblo+CO+81001";
+  }
+  else if (mapItem == "Fowler Building"){
+      detailsImage.src = "./images/fowler.png";
+      detailsTitle.innerHTML = "<h1>Fowler Building</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3107637,-104.5765762";
+  }
+  else if (mapItem == "N8 Parking Lot"){
+      detailsImage.src = "./images/N1-parking.jpg";
+      detailsTitle.innerHTML = "<h1>N8 Parking Lot</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3131245, -104.5788670";
+  }
+  else if (mapItem == "Fieldhouse"){
+      detailsImage.src = "./images/fieldhouse.jpeg";
+      detailsTitle.innerHTML = "<h1>Fieldhouse</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3090158,-104.5704836";
+  }
+  else if (mapItem == "Leomiti Warrior Center"){
+      detailsImage.src = "./images/leomiti_center.webp";
+      detailsTitle.innerHTML = "<h1>Leomiti Warrior Center</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3093149,-104.5710286";
+  }
+  else if (mapItem == "University Plaza"){
+      detailsImage.src = "./images/uni_plaza.jpg";
+      detailsTitle.innerHTML = "<h1>University Plaza</h1>";
+      directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3082254,-104.5780606";
+  }
+
+
+  // This line unhides the popup dialog so it displays
+  popup.style.display = "block";
+}
+
+directionsBtn.onclick = function() {
+ popup.style.display = "none";
+ window.open(
+    directionsLocation,
+    '_blank' // <- This is what makes it open in a new window.
+    );
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  popup.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == popup) {
+    popup.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
