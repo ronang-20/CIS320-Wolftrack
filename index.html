@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WolfTrack - CSU Pueblo Interactive Map</title>
@@ -18,6 +20,13 @@
   overflow: auto; /* Enable scroll if needed */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
+
+img {
+    max-width: 100%; /* Ensures the image fits within the screen width */
+    height: auto;    /* Maintains the aspect ratio */
+    display: block;  /* Removes any inline spacing issues */
+    margin: 0 auto;  /* Centers the image horizontally */
+  }
 
 .popup-content {
   background-color: #fefefe;
@@ -74,6 +83,19 @@ padding: 5px 15px;
   text-transform: capitalize;
   color: #003459;
 }
+
+.map-container {
+    position: relative;
+    width: 100%;
+    max-width: 1504px; /* Adjust as needed */
+    margin: auto;
+}
+
+.map-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 </style>
 </head>
 <body>
@@ -93,7 +115,13 @@ padding: 5px 15px;
 </div>
 </div>
 
-<img src="https://www.csupueblo.edu/about/_img/campus-map-2024.png" alt="CSU Pueblo Map" usemap="#campusmap">
+<div class="map-container">
+  <img src="https://www.csupueblo.edu/about/_img/campus-map-2024.png"
+       alt="CSU Pueblo Map" 
+       usemap="#campusmap"
+       width="1504"
+       height="1135">
+</div>
 
 <map name="campusmap">
 <!-- Step 1: Add an area shape for the building / parking lot for the CSU Pueblo map -->
@@ -320,10 +348,10 @@ onImageClick = function(mapItem) {
       detailsTitle.innerHTML = "<h1>E7 Parking Lot</h1>";
       directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3068396,-104.5777818";
   }
-  else if (mapItem == "E8 Parking Lot North and South")
+  else if (mapItem == "E8 Parking Lot North & South")
   {
       detailsImage.src = "./images/e8_parking_lot.jpg";
-      detailsTitle.innerHTML = "<h1>E8 Parking Lot North and South</h1>";
+      detailsTitle.innerHTML = "<h1>E8 Parking Lot North & South</h1>";
       directionsLocation = "https://www.google.com/maps/dir/Current+Location/38.3062503,-104.5771488";
   }
   else if (mapItem == "E9 Parking Lot")
@@ -624,6 +652,10 @@ window.onclick = function(event) {
     popup.style.display = "none";
   }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    imageMapResize(); // Automatically resizes the <map> coordinates
+  });
 </script>
 
 </body>
